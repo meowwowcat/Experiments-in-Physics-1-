@@ -22,5 +22,5 @@ for i in 2:11
     plot!(p, l, y, label=label_name)
 end
 
-savefig(p, "figure/NDフィルターのスペクトル特性.png")
+savefig(p, "figure/NDフィルター.png")
 
