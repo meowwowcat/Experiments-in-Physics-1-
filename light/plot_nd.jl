@@ -24,3 +24,13 @@ end
 
 savefig(p, "figure/NDフィルター.png")
 
+
+
+
+for i = 2:11
+    y = df[:, i]
+    max_value = maximum(y)
+    @printf("Column %d: Max Value = %.2f\n", i, max_value)
+
+    
+end

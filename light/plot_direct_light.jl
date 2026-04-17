@@ -15,7 +15,7 @@ l = df[:, 1]
 y = df[:, 2]
 label_name = names(df)[2]
 
-plot!(p, l, y, label=label_name)
+p = plot(l, y, label=:false)  #= ラベル名を入れたい場合は　label=label_name　=#
 
 
 savefig(p, "figure/直接光.png")
