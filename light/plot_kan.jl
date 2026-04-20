@@ -17,7 +17,7 @@ direct = df2[:, 2]
 # グラフの初期化
 p = plot(xlabel="Wave lenght (nm)", ylabel="Transmittance ", legend=:topright)
 over = plot(xlabel="Wave lenght (nm)", ylabel="Transmittance",
-    label=false,
+    label=false,legend=:topleft,
     xlims=(500, 575),ylims=(0, 0.4)
     )
 
@@ -50,16 +50,16 @@ column_names = names(df1)[2:15]
 # 結果をDataFrameにまとめる
 results = DataFrame(
     Column = column_names,
-    Max_Transmittance = Base.vec(max_vals),
-    Wavelength_nm = [l[max_indices[i][1]] for i in 1:length(column_names)]
+    Wavelength_max = [l[max_indices[i][1]] for i in 1:length(column_names)],
+    Max_Transmittance = vec(max_vals)
+    
 )
 
 # CSVに保存
 CSV.write("light/data/kan_透過率.csv", results)
 
-# 出力
-for row in eachrow(results)
-    @printf("%s: Max Transmittance = %.2f at Wavelength = %.2f nm\n", row.Column, row.Max_Transmittance, row.Wavelength_nm)
-end
 
-
+# 入射角と最大透過率の関係
+pz = plot(results.Column, results.Max_Transmittance,legend=:false,
+    xlabel="Angle of Incidence (θ)", ylabel="Maximum Transmittance")
+savefig(pz, "light/figure/波長_最大透過率.png")
