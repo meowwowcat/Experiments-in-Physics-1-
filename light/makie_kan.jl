@@ -15,10 +15,10 @@ direct = df2[:, 2]
 
 # グラフの初期化
 fig1 = Figure()
-ax1 = Axis(fig1[1,1], xlabel="Wavelength (nm)", ylabel="Transmittance", title="Interference Filter")
+ax1 = Axis(fig1[1,1], xlabel="Wavelength (nm)", ylabel="Transmittance", #=title="Interference Filter"=#)
 fig2 = Figure()
 ax2 = Axis(fig2[1,1], xlabel="Wavelength (nm)", ylabel="Transmittance",
-    limits=(500, 575, 0, 0.4), title="Normalized Transmittance")
+    limits=(500, 575, 0, 0.4), #=title="Normalized Transmittance"=#)
 
 # ベクトル化で高速化
 data_matrix = Matrix(df1[:, 2:15])  # 2列目から15列目を行列に
