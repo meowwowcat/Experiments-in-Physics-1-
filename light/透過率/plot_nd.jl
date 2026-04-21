@@ -4,7 +4,7 @@ using Plots
 using Printf
 
 
-df = CSV.read("data/NDフィルター.csv", DataFrame)
+df = CSV.read("light/透過率/data/NDフィルター.csv", DataFrame)
 
 l = df[:, 1]
 
@@ -21,7 +21,7 @@ for i in 2:11
     plot!(p, l, y, label=label_name)
 end
 
-savefig(p, "figure/NDフィルター.png")
+savefig(p, "light/透過率/figure/NDフィルター.png")
 
 
 

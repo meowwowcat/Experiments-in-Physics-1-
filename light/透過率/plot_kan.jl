@@ -6,8 +6,8 @@ using Plots
 using Printf
 
 # データ読み込み
-df1 = CSV.read("light/data/干渉フィルター.csv", DataFrame; types=Float64)
-df2 = CSV.read("light/data/直接光.csv", DataFrame; types=Float64)
+df1 = CSV.read("light/透過率/data/干渉フィルター.csv", DataFrame; types=Float64)
+df2 = CSV.read("light/透過率/data/直接光.csv", DataFrame; types=Float64)
 
 #### グラフの作成#####
 
@@ -37,8 +37,8 @@ for (i, col) in enumerate(eachcol(over_matrix))
     plot!(over, l, col, label="Over " * column_names[i])
 end
 
-savefig(p, "light/figure/干渉フィルター.png")
-savefig(over, "light/figure/Transmittance_干渉フィルター.png")
+savefig(p, "light/透過率/figure/干渉フィルター.png")
+savefig(over, "light/透過率/figure/Transmittance_干渉フィルター.png")
 
 # 最大透過率の波長を調べる
 println("\n最大透過率の波長:")
@@ -56,10 +56,12 @@ results = DataFrame(
 )
 
 # CSVに保存
-CSV.write("light/data/kan_透過率.csv", results)
+CSV.write("light/透過率/data/kan_最大透過率.csv", results)
 
 
 # 入射角と最大透過率の関係
 pz = plot(results.Column, results.Max_Transmittance,legend=:false,
     xlabel="Angle of Incidence (θ)", ylabel="Maximum Transmittance")
-savefig(pz, "light/figure/波長_最大透過率.png")
+savefig(pz, "light/透過率/figure/波長_最大透過率.png")
+
+

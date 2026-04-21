@@ -4,7 +4,7 @@ using Plots
 using Printf
 
 
-df = CSV.read("data/直接光.csv", DataFrame)
+df = CSV.read("light/透過率/data/直接光.csv", DataFrame)
 
 #### グラフの作成#####
 
@@ -18,4 +18,4 @@ label_name = names(df)[2]
 p = plot(l, y, label=:false)  #= ラベル名を入れたい場合は　label=label_name　=#
 
 
-savefig(p, "figure/直接光.png")
+savefig(p, "light/透過率/figure/直接光.png")
