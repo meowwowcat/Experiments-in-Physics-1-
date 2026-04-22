@@ -5,8 +5,8 @@ using Peaks
 using LsqFit   
 using Printf
 
-df1 = CSV.read("data/Na 6ms.txt", DataFrame; types=Float64, header=false, delim='\t')
-df2 = CSV.read("data/Na 6ms bg.txt", DataFrame; types=Float64, header=false, delim='\t')
+df1 = CSV.read("data/Cd 41ms.txt", DataFrame; types=Float64, header=false, delim='\t')
+df2 = CSV.read("data/Cd 41ms bg.txt", DataFrame; types=Float64, header=false, delim='\t')
 
 d = df1[:, 1]
 l1 = df1[:, 2]
@@ -33,11 +33,11 @@ result = DataFrame(
 )
 
 #ピークをCSVファイルに保存
-CSV.write("spectrum_resolution/peak/Na.csv", result)
+CSV.write("spectrum_resolution/peak/Cd.csv", result)
 
 
 peak = scatter!(ax, filtered_positions, filtered_heights, color=:red)
-save("spectrum_resolution/figure/Na_peaks.png", fig)
+save("spectrum_resolution/figure/Cd_peaks.png", fig)
 
 mat_d =  zeros(Float64,length(Δl), length(filtered_positions))
 
@@ -82,8 +82,8 @@ for i = 1:n
     x_plot = range(-2, 2, length=200)
     lines!(axes[i], x_plot, gaussian(x_plot, p_fit), color = :red, linewidth = 2)
 
-    open("spectrum_resolution/bunkainou/bunkainou_Na.txt", "a") do io
-        @printf(io, "Na\n")
+    open("spectrum_resolution/bunkainou/bunkainou_Cd.txt", "a") do io
+        @printf(io, "Cd\n")
         @printf(io, "波長: %f, ピークの値: %f\n", filtered_positions[i]  , filtered_heights[i])
         @printf(io, "フィットしたパラメータ: A = %f, σ = %f\n", p_fit[1], p_fit[2])
         @printf(io, "スペクトルの分解能 (FWHM): %f\n", σ[i])   
@@ -93,4 +93,4 @@ end
 
 
 
-save("spectrum_resolution/figure/Na_fits.png", fig_2)
+save("spectrum_resolution/figure/Cd_fits.png", fig_2)
