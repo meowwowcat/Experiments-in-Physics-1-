@@ -59,10 +59,11 @@ for i= 1:n
     axes[i] = Axis(fig_2[1, i], 
         limits = ((-2.0, 2.0), nothing)
         #=xlabel = "Δd (relative to peak)", 
-        ylabel = "Intensity (Δl)", 
-        title = "Peak at $(filtered_positions[i])"=#
+        ylabel = "Intensity (Δl)"=#, 
+        title = "Peak at $(filtered_positions[i])",
+        titlealign = :center
     )
-    scatter!(axes[i], mat_d[:, i], Δl,label="Peak at $(filtered_positions[i])")
+    scatter!(axes[i], mat_d[:, i], Δl)
 
 end
 

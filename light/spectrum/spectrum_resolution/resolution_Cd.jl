@@ -47,7 +47,7 @@ for i =1:n
     mat_d[:, i] = d .- filtered_positions[i]
 end
 
-fig_2 = Figure(size = (1000, 500))
+fig_2 = Figure(size = (1000, 500),fontsize=12)
 
 ### define gaussian
 gaussian(x, p) = p[1] .* exp.(-0.5 .* (x ./ p[2]).^2)
@@ -59,8 +59,8 @@ for i= 1:n
     axes[i] = Axis(fig_2[1, i], 
         limits = ((-2.0, 2.0), nothing)
         #=xlabel = "Δd (relative to peak)", 
-        ylabel = "Intensity (Δl)", 
-        title = "Peak at $(filtered_positions[i])"=#
+        ylabel = "Intensity (Δl)"=#, 
+        title = "Peak at $(filtered_positions[i])"
     )
     scatter!(axes[i], mat_d[:, i], Δl,label="Peak at $(filtered_positions[i])")
 
