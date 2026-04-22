@@ -1,11 +1,16 @@
-
-
-
 # Julia 
 juliaで忘れがちなものを記述します．実験自体にはほとんど関係ないです．
 基本メモとして使います．
 
 図の作成は主にPlots.jlを用います．ただし，将来的にはMakie.jlに変えるつもりです．
+
+## 実行時間の確認
+実行時間の確認は，
+```
+julia>@time include("hoge.jl")
+```
+でできます．
+
 
 ## csv,dataframes について
 csvファイルを読み取る時にcsv.jl,dataframes.jl を使います．そのとき，
@@ -52,6 +57,3 @@ julia>maximum(A,dims=2 )
 3 6 9
 ```
 となり，各行の最大値が表示される．
-
-
-
