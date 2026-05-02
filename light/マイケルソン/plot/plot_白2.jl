@@ -5,7 +5,7 @@ using Peaks
 using LsqFit   
 using Printf
 
-df1 = CSV.read("light/マイケルソン/data/白1.csv", DataFrame)
+df1 = CSV.read("マイケルソン/data/白2.csv", DataFrame) #light/ まで入れなきゃいけない時がある． 
 
 λ = 600 # 波長
 Δl = df1[:,2] #移動変化量Δ
@@ -20,7 +20,7 @@ D = zeros(Float64, length(n_N), length(n_n))
 
 # figureの設定
 fig = Figure()
-axis = Axis(fig[1,1])
+axis = Axis(fig[1,1],xlabel="θ[deg]",ylabel="D[nm]")
 #=
 fi = Figure()
 axi = Axis(fi[1,1])
@@ -41,17 +41,17 @@ end
 result = DataFrame(
     θ= θ,
     ϕ_vec = ϕ
-)
+)=#
 result_D = DataFrame(D, :auto)
 
-
+#=
 output_dir1 = "light/マイケルソン/data2"
 if !ispath(output_dir1)
     mkpath(output_dir1)
 end
 
-CSV.write("light/マイケルソン/data2/予測光路差_白1.csv", result) =#
-CSV.write("light/マイケルソン/data2/D_白1.csv", result_D)
+CSV.write("light/マイケルソン/output_data/予測光路差_白2.csv", result) =#
+CSV.write("マイケルソン/output_data/D_白2.csv", result_D) #light/ まで入れなきゃいけない時がある．
 
 
 #display(fig)
@@ -64,7 +64,7 @@ l = cumsum(Δl)
 D_l = 1/2 .* l  .* λ
 
 # xlabel=n_N,ylabel=D_l
-scatter!(axi,n_N,D_l)
+# catter!(axi,n_N,D_l)
 
 # フィっティイング Lsqfitを用いた
 
@@ -92,6 +92,8 @@ h(x) = - p_fit[1] * x.^2
 h_y = h(new_N)
 #scatter!(axis,new_N,new_Dl)
 scatter!(axis,new_N,h_y,color=:red)
+
+save("マイケルソン/figure/白2.png",fig)
 
 display(fig)
 
